@@ -28,9 +28,9 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - port: 9092
-    targetPort: 8080
-    nodePort: 30090
+  - port: 8080
+    targetPort: 9092
+    nodePort: 30100
     protocol: TCP
     name: http
   selector:
