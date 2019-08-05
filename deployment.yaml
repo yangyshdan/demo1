@@ -4,6 +4,8 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: springtest
+  labels:
+    app: yangyshdan-web
 spec:
   replicas: 2
   template:
@@ -16,3 +18,19 @@ spec:
           image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest:1.0
           ports:
             - containerPort: 8080
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: springtest
+  labels:
+    app: yangyshdan-web
+spec:
+  type: NodePort
+  ports:
+  - port: 30100
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: yangyshdan-web
