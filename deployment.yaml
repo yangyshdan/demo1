@@ -18,7 +18,10 @@ spec:
           image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest:1.0
           ports:
             - containerPort: 8080
-
+          env:
+            - JAEGER_SERVICE_NAME: springtest
+            - JAEGER_AGENT_HOST: simplest-agent.default.svc.cluster.local
+---
 apiVersion: v1
 kind: Service
 metadata:

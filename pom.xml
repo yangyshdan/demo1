@@ -34,6 +34,16 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>io.opentracing.contrib</groupId>
+		    <artifactId>opentracing-spring-web-autoconfigure</artifactId>
+		    <version>0.3.2</version>
+		</dependency>
+		<dependency>
+			  <groupId>io.jaegertracing</groupId>
+			  <artifactId>jaeger-client</artifactId>
+			  <version>0.32.0</version>
+			</dependency>
 	</dependencies>
 
 	<build>
