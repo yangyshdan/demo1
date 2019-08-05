@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: springtest
-        image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest:1.0
+        image: registry.cn-hangzhou.aliyuncs.com/yangyshdan/springtest
         ports:
         - containerPort: 8080
         env:
