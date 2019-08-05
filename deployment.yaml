@@ -14,13 +14,15 @@ spec:
         app: yangyshdan-web
     spec:
       containers:
-        - name: springtest
-          image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest:1.0
-          ports:
-            - containerPort: 8080
-          env:
-            - JAEGER_SERVICE_NAME: springtest
-            - JAEGER_AGENT_HOST: simplest-agent.default.svc.cluster.local
+      - name: springtest
+        image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest:1.0
+        ports:
+        - containerPort: 8080
+        env:
+        - name: JAEGER_SERVICE_NAME
+          value: springtest
+        - name: JAEGER_AGENT_HOST
+          value: simplest-agent.default.svc.cluster.local
 ---
 apiVersion: v1
 kind: Service
