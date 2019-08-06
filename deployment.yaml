@@ -20,6 +20,7 @@ spec:
         image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest
         ports:
         - containerPort: 8080
+        - containerPort: 1234
         env:
         - name: JAEGER_SERVICE_NAME
           value: springtest
@@ -41,5 +42,10 @@ spec:
     nodePort: 30100
     protocol: TCP
     name: http
+  - port: 1234
+    targetPort: 1234
+    nodePort: 30101
+    protocol: TCP
+    name: p-metrics
   selector:
     app: yangyshdan-web

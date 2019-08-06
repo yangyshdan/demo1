@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,6 +29,8 @@ import io.jaegertracing.Configuration.SamplerConfiguration;
 import io.jaegertracing.internal.samplers.ConstSampler;
 import io.jaegertracing.internal.samplers.ProbabilisticSampler;
 import io.opentracing.util.GlobalTracer;
+import io.prometheus.client.Histogram;
+import io.prometheus.client.exporter.HTTPServer;
 
 @RestController
 @Configuration
@@ -37,19 +40,15 @@ import io.opentracing.util.GlobalTracer;
 public class DemoApplication {
    
 	
-//	static final Histogram requestLatency = Histogram.build()
-//		     .name("requests_latency_seconds").help("Request latency in seconds.").register();
-//
-//	static final Histogram requestSizeKB = Histogram.build()
-//		     .name("requests_size_kb").help("Request size in KB.").register();
-	
     @Autowired
     private RestTemplate restTemplate;
 
 	
     @RequestMapping("/")
-    String home() {
+    public String home() {
+//    	Histogram.Timer requestTimer = requestLatency.startTimer();
     	System.out.println("HW");
+//    	requestTimer.observeDuration();
         return "Hello World";
     }
     
@@ -65,10 +64,12 @@ public class DemoApplication {
         return "Chaining + " + response.getBody();
     }
     
+    public void test() {
+    	
+    }
 
 	@Bean
 	public io.opentracing.Tracer jaegerTracer() {
-		
 		
 		SamplerConfiguration samplerConfig = SamplerConfiguration.fromEnv()
 				  .withType(ConstSampler.TYPE)
@@ -89,8 +90,12 @@ public class DemoApplication {
 	public static void main(String[] args) {
 		
 		SpringApplication.run(DemoApplication.class, args);
-		
-		
+		try {
+			HTTPServer server = new HTTPServer(1234);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	
