@@ -35,6 +35,13 @@ import io.opentracing.util.GlobalTracer;
 @SpringBootConfiguration
 @ComponentScan
 public class DemoApplication {
+   
+	
+//	static final Histogram requestLatency = Histogram.build()
+//		     .name("requests_latency_seconds").help("Request latency in seconds.").register();
+//
+//	static final Histogram requestSizeKB = Histogram.build()
+//		     .name("requests_size_kb").help("Request size in KB.").register();
 	
     @Autowired
     private RestTemplate restTemplate;
@@ -51,6 +58,7 @@ public class DemoApplication {
     public String hello() {
         return "Hello from Spring Boot!";
     }
+    
     @RequestMapping("/chaining")
     public String chaining() {
         ResponseEntity<String> response = restTemplate.getForEntity("http://localhost:8080/hello", String.class);
@@ -79,7 +87,10 @@ public class DemoApplication {
 	
 
 	public static void main(String[] args) {
+		
 		SpringApplication.run(DemoApplication.class, args);
+		
+		
 	}
 
 	

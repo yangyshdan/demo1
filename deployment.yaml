@@ -30,6 +30,10 @@ metadata:
   name: springtest
   labels:
     app: yangyshdan-web
+  annotations:
+    prometheus.io/port: "8080"
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/actuator/prometheus"
 spec:
   type: NodePort
   ports:
