@@ -6,16 +6,18 @@ metadata:
   name: springtest
   labels:
     app: yangyshdan-web
+    monitor: prometheus-actuator
 spec:
   replicas: 1
   template:
     metadata:
       labels:
         app: yangyshdan-web
+        monitor: k8s-prometheus
     spec:
       containers:
       - name: springtest
-        image: registry.cn-hangzhou.aliyuncs.com/yangyshdan/springtest
+        image: registry.cn-hangzhou.aliyuncs.com/fuyi-yy/springtest
         ports:
         - containerPort: 8080
         env:
@@ -30,10 +32,7 @@ metadata:
   name: springtest
   labels:
     app: yangyshdan-web
-  annotations:
-    prometheus.io/port: "8080"
-    prometheus.io/scrape: "true"
-    prometheus.io/path: "/actuator/prometheus"
+    monitor: prometheus-actuator
 spec:
   type: NodePort
   ports:
